@@ -42,7 +42,7 @@ echo "Convert fastq to fasta files."
 echo
 for file in data/trimmed/*.fastq
 do
-	bioawk -c fastx '{print ">"$name"\n"$seq}' $file > data/query_seqs.fasta
+	bioawk -c fastx '{print ">"$name"\n"$seq}' $file > data/query_seqs/$(basename -s .trim.fastq $file).fasta
 done
 echo
 echo "Files converted to fasta."
