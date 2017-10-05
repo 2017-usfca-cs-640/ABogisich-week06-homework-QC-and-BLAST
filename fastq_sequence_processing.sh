@@ -23,6 +23,7 @@ echo
 fastqc data/raw_data/*.fastq --outdir=output/fastqc
 echo
 echo "QC reports made."
+#Reports look good in Cyberduck viewer
 
 #Trimming up the sequences based on quality scores
 #Can find info on Trimmomatic tool at:http://www.usadellab.org/cms/index.php?page=trimmomatic
@@ -30,7 +31,7 @@ echo "Trim data based on quality scores."
 
 for file in data/raw_data/*.fastq
 do
-	TrimmomaticSE -threads 2 -phred33 $file $(basename -s.fastq $file).trim.fastq LEADING:5 TRAILING:5 SLIDINGWINDOW:8:25 MINLEN:150
+	TrimmomaticSE -threads 2 -phred33 $file data/trimmed/$(basename -s .fastq $file).trim.fastq LEADING:5 TRAILING:5 SLIDINGWINDOW:8:25 MINLEN:150
 done
 echo
 echo "Files trimmed."
@@ -39,8 +40,9 @@ echo "Files trimmed."
 #Code to convert fastq files into fasta files for BLAST search
 #echo "Convert fastq to fasta files."
 #echo
-#for file in $data/trimmed/*.fastq
+#for file in data/trimmed/*.fastq
 #do
-#	bioawk -c fastx '{print ">"$file"\n"$seq}' data/trimmed/filename.trim.fastq
+#echo	bioawk -c fastx '{print ">"$file"\n"$seq}' data/trimmed/filename.trim.fastq
 #done
+#echo
 #echo "Files converted to fasta."
