@@ -46,5 +46,13 @@ do
 done
 echo
 echo "Files converted to fasta."
+echo
 
 #Code to search for sequence matches using BLAST
+echo "BLAST search for top matching sequence in database"
+echo
+for file in data/query_seqs.fasta/*.fasta
+do
+echo	blastn -b /blast-db/nt -num_threads 2 -outfmt '10 sscinames std' -out blast_results.csv -max_target_seqs 1 -negative_gilist /blast-db/2017-09-21_GenBank_Environmental_Uncultured_to_Exclude.txt -query $file --outdir=output/csv
+done
+echo "BLAST search and match complete."
