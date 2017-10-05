@@ -38,11 +38,13 @@ echo "Files trimmed."
 
 
 #Code to convert fastq files into fasta files for BLAST search
-#echo "Convert fastq to fasta files."
-#echo
-#for file in data/trimmed/*.fastq
-#do
-#echo	bioawk -c fastx '{print ">"$file"\n"$seq}' data/trimmed/filename.trim.fastq
-#done
-#echo
-#echo "Files converted to fasta."
+echo "Convert fastq to fasta files."
+echo
+for file in data/trimmed/*.fastq
+do
+	bioawk -c fastx '{print ">"$name"\n"$seq}' $file > data/query_seqs.fasta
+done
+echo
+echo "Files converted to fasta."
+
+#Code to search for sequence matches using BLAST
